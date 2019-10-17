@@ -41,53 +41,36 @@
 - git status：确定文件当前所处Git工作区域；
 这里假设在工作区有文件 `HelloWorld.cpp`
 1. 工作区转入暂存区：
-```
-git status
-git add HelloWorld.cpp；
-```
+`git add 文件名，例如 git add a.txt`
 2. 暂存区转入Git 仓库：
-```
-git status
-git commit –m '提交描述'
-```
+`git commit –m xxx,例如 git commit =m '第一次提交代码'`
 3. 确定文件是否已在Git仓库中：
-```
-git status
-```
+`git status`
 4. 删除工作区文件：
-```
-git rm –f 文件名
-```
-例如：`git rm –f a.txt`
-5. 查看当前工作区对应的git路径
-```
-git remote -v
-```
-6. 修改文件：
-```
-开始修改： vi 文件名
-退出修改： ZZ
-```
-
-例如 `vi a.txt`进入vim修改文件（退出使用：`wq`）
+`git rm –f 文件名 ,例如 git rm –f a.txt`
+5. 修改文件：
+ `vi 文件名 ,一般不用这个命令修改文件`
+6. 退出文件修改 
+`ZZ`
+7. 查看当前工作区本地路径
+`pwd`
+8. 查看当前工作区对应的git路径
+`git remote -v`
 
 > 如果对vim操作理解有困难的还是建议看一下视频，视频讲了增删改查的相应操作，看一下vim操作指南，对vim操作有全面的认识
 
 ## Git基础设置：
 1.	设置用户名
-
 ```
 git config –-global user.name '这里填写自己的用户名'
 ```
 
 2.	设置用户名邮箱
-
 ```
 git config –-global user.email '这里填写自己的用户名邮箱'
 ```
 
 3.	查看设置`git config --list`
-
 > 注意：该设置在`GitHub`仓库主页显示谁提交了该文件，注意这里的  -  数目为2！
 
 ## 初始化一个新的Git仓库：
