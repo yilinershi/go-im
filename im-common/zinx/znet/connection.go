@@ -80,7 +80,7 @@ func (c *Connection) StartWriter() {
 		case data := <-c.msgChan:
 			//有数据要写给客户端
 			if _, err := c.Conn.Write(data); err != nil {
-				fmt.Println("Send Data error:, ", err, " Conn Writer exit")
+				fmt.Println("Send Data errorCode:, ", err, " Conn Writer exit")
 				return
 			}
 			//fmt.Printf("Send data succ! data = %+v\n", data)
@@ -88,7 +88,7 @@ func (c *Connection) StartWriter() {
 			if ok {
 				//有数据要写给客户端
 				if _, err := c.Conn.Write(data); err != nil {
-					fmt.Println("Send Buff Data error:, ", err, " Conn Writer exit")
+					fmt.Println("Send Buff Data errorCode:, ", err, " Conn Writer exit")
 					return
 				}
 			} else {
@@ -116,7 +116,7 @@ func (c *Connection) StartReader() {
 		//读取客户端的Msg head
 		headData := make([]byte, dp.GetHeadLen())
 		if _, err := io.ReadFull(c.Conn, headData); err != nil {
-			fmt.Println("read msg head error ", err)
+			fmt.Println("read msg head errorCode ", err)
 			break
 		}
 		//fmt.Printf("read headData %+v\n", headData)
@@ -124,7 +124,7 @@ func (c *Connection) StartReader() {
 		//拆包，得到msgid 和 datalen 放在msg中
 		msg, err := dp.Unpack(headData)
 		if err != nil {
-			fmt.Println("unpack error ", err)
+			fmt.Println("unpack errorCode ", err)
 			break
 		}
 
@@ -133,7 +133,7 @@ func (c *Connection) StartReader() {
 		if msg.GetDataLen() > 0 {
 			data = make([]byte, msg.GetDataLen())
 			if _, err := io.ReadFull(c.Conn, data); err != nil {
-				fmt.Println("read msg data error ", err)
+				fmt.Println("read msg data errorCode ", err)
 				break
 			}
 		}
@@ -162,7 +162,7 @@ func (c *Connection) Start() {
 	//2 开启用于写回客户端数据流程的Goroutine
 	go c.StartWriter()
 	//按照用户传递进来的创建连接时需要处理的业务，执行钩子方法
-	if c.TcpServer!=nil{
+	if c.TcpServer != nil {
 		c.TcpServer.CallOnConnStart(c)
 	}
 }
@@ -176,7 +176,7 @@ func (c *Connection) Stop() {
 	}
 	c.isClosed = true
 	//如果用户注册了该链接的关闭回调业务，那么在此刻应该显示调用
-	if c.TcpServer!=nil{
+	if c.TcpServer != nil {
 		c.TcpServer.CallOnConnStop(c)
 	}
 
@@ -184,9 +184,9 @@ func (c *Connection) Stop() {
 	c.Conn.Close()
 	//关闭Writer
 	c.ExitBuffChan <- true
-	if c.TcpServer!=nil{
-	//将链接从连接管理器中删除
-	c.TcpServer.GetConnMgr().Remove(c)
+	if c.TcpServer != nil {
+		//将链接从连接管理器中删除
+		c.TcpServer.GetConnMgr().Remove(c)
 	}
 	//关闭该链接全部管道
 	close(c.ExitBuffChan)
@@ -217,8 +217,8 @@ func (c *Connection) SendMsg(msgId uint32, data []byte) error {
 	dp := NewDataPack()
 	msg, err := dp.Pack(NewMsgPackage(msgId, data))
 	if err != nil {
-		fmt.Println("Pack error msg id = ", msgId)
-		return errors.New("Pack error msg ")
+		fmt.Println("Pack errorCode msg id = ", msgId)
+		return errors.New("Pack errorCode msg ")
 	}
 	//写回客户端
 	c.msgChan <- msg
@@ -233,8 +233,8 @@ func (c *Connection) SendBuffMsg(msgId uint32, data []byte) error {
 	dp := NewDataPack()
 	msg, err := dp.Pack(NewMsgPackage(msgId, data))
 	if err != nil {
-		fmt.Println("Pack error msg id = ", msgId)
-		return errors.New("Pack error msg ")
+		fmt.Println("Pack errorCode msg id = ", msgId)
+		return errors.New("Pack errorCode msg ")
 	}
 	//写回客户端
 	c.msgBuffChan <- msg

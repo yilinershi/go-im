@@ -37,7 +37,7 @@ func TestDataPack(t *testing.T) {
 					headData := make([]byte, dp.GetHeadLen())
 					_, err := io.ReadFull(conn, headData) //ReadFull 会把msg填充满为止
 					if err != nil {
-						fmt.Println("read head error")
+						fmt.Println("read head errorCode")
 					}
 					//将headData字节流 拆包到msg中
 					msgHead, err := dp.Unpack(headData)

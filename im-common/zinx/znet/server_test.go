@@ -6,6 +6,7 @@ import (
 	"io"
 	"testing"
 	"time"
+	"net"
 )
 
 // run in terminal:
@@ -20,7 +21,7 @@ func ClientTest(i uint32) {
 	//3秒之后发起测试请求，给服务端开启服务的机会
 	time.Sleep(3 * time.Second)
 
-	conn, err := Dial("tcp", "127.0.0.1:8999")
+	conn, err := net.Dial("tcp", "127.0.0.1:8999")
 	if err != nil {
 		fmt.Println("client start err, exit!")
 		return
@@ -28,7 +29,7 @@ func ClientTest(i uint32) {
 
 	for {
 		dp := NewDataPack()
-		msg, _ := dp.Pack(NewMsgPackage(i, []byte("client test message")))
+		msg, _ := dp.Pack(NewMsgPackage(i, []byte("client test model")))
 		_, err := conn.Write(msg)
 		if err != nil {
 			fmt.Println("client write err: ", err)

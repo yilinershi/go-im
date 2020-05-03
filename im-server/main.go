@@ -6,11 +6,13 @@ import (
 	"go-im/im-common/zinx/iface"
 	"go-im/im-common/zinx/znet"
 	"go-im/im-server/api"
+	"go-im/im-server/db"
 )
 
-func main()  {
+func main() {
 	//创建服务器句柄
 	s := znet.NewServer()
+	db.Init()
 
 	//注册客户端连接建立和丢失函数
 	s.SetOnConnStart(OnConnectionAdd)
@@ -18,17 +20,17 @@ func main()  {
 
 	//注册路由
 	s.AddRouter(messageCommond.TypeLoginReq, &api.LoginRouter{})
-
+	s.AddRouter(messageCommond.TypeRegisterReq, &api.RegisterRouter{})
 
 	//启动服务
 	s.Serve()
+
 }
 
 //当客户端断开连接的时候的hook函数
 func OnConnectionLost(conn iface.IConnection) {
 	fmt.Println("OnConnectionLost")
 }
-
 
 //当客户端建立连接的时候的hook函数
 func OnConnectionAdd(conn iface.IConnection) {

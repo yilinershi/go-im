@@ -11,4 +11,3 @@ type IClient interface {
 	//得到链接管理
 	GetConn() IConnection
 }
-

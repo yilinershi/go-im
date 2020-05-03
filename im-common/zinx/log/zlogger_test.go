@@ -18,7 +18,7 @@ func TestStdZLog(t *testing.T) {
 
 	//设置日志前缀，主要标记当前日志模块
 	SetPrefix("MODULE")
-	Error("zinx error content")
+	Error("zinx errorCode content")
 
 	//添加标记位
 	AddFlag(BitShortFile | BitTime)
@@ -28,12 +28,12 @@ func TestStdZLog(t *testing.T) {
 	SetLogFile("./log", "testfile.log")
 	Debug("===> zinx debug content ~~666")
 	Debug("===> zinx debug content ~~888")
-	Error("===> zinx Error!!!! ~~~555~~~")
+	Error("===> zinx Desc!!!! ~~~555~~~")
 
 	//关闭debug调试
 	CloseDebug()
 	Debug("===> 我不应该出现~！")
 	Debug("===> 我不应该出现~！")
-	Error("===> zinx Error  after debug close !!!!")
+	Error("===> zinx Desc  after debug close !!!!")
 
 }

@@ -71,7 +71,7 @@ func Warn(v ...interface{}) {
 	StdZinxLog.Warn(v...)
 }
 
-// ====> Error <====
+// ====> Desc <====
 func Errorf(format string, v ...interface{}) {
 	StdZinxLog.Errorf(format, v...)
 }

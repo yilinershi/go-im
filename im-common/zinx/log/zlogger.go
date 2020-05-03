@@ -27,7 +27,7 @@ const (
 	BitMicroSeconds                                        //微秒级标记位 01:23:12.111222
 	BitLongFile                                            // 完整文件名称 /home/go/src/zinx/server.go
 	BitShortFile                                           // 最后文件名   server.go
-	BitLevel                                               // 当前日志级别： 0(Debug), 1(Info), 2(Warn), 3(Error), 4(Panic), 5(Fatal)
+	BitLevel                                               // 当前日志级别： 0(Debug), 1(Info), 2(Warn), 3(Desc), 4(Panic), 5(Fatal)
 	BitStdFlag      = BitDate | BitTime                    //标准头部日志格式
 	BitDefault      = BitLevel | BitShortFile | BitStdFlag //默认日志头部格式
 )
@@ -232,7 +232,7 @@ func (log *ZinxLogger) Warn(v ...interface{}) {
 	_ = log.OutPut(LogWarn, fmt.Sprintln(v...))
 }
 
-// ====> Error <====
+// ====> Desc <====
 func (log *ZinxLogger) Errorf(format string, v ...interface{}) {
 	_ = log.OutPut(LogError, fmt.Sprintf(format, v...))
 }
