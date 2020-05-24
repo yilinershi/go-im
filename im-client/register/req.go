@@ -4,28 +4,18 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"go-im/im-common/messageCommond"
-	"go-im/im-common/model"
-	"go-im/im-common/zinx/iface"
+	"go-im/im-common/netCommond"
+	"go-im/im-common/proto"
 )
 
-var conn iface.IConnection
-
-//初始化客户端的连接
-func Init(clientConn iface.IConnection) {
-	conn = clientConn
-	
-	initEvent()
-}
-
 //发送req
-func registerReq(account string, password1 string, password2 string,age int) (err error) {
+func registerReq(account string, password1 string, password2 string, age int) (err error) {
 
-	req := &model.RegisterReq{
+	req := &proto.RegisterReq{
 		Account:   account,
 		Password1: password1,
 		Password2: password2,
-		Age: age,
+		Age:       age,
 	}
 	fmt.Printf("register req=%v\n", req)
 
@@ -35,7 +25,7 @@ func registerReq(account string, password1 string, password2 string,age int) (er
 	}
 
 	//将结构体json byte 发送
-	err = conn.SendMsg(messageCommond.TypeRegisterReq, jsonData)
+	err = conn.SendMsg(netCommond.TypeRegisterReq, jsonData)
 	if err != nil {
 		fmt.Println("client write err: ", err)
 		return

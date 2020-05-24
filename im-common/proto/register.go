@@ -1,4 +1,4 @@
-package model
+package proto
 
 import "go-im/im-common/errorCode"
 
@@ -12,3 +12,6 @@ type RegisterReq struct {
 type RegisterResp struct {
 	Error	*errorCode.ErrorBase
 }
+
+
+

@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"go-im/im-common/messageCommond"
+	"go-im/im-common/netCommond"
 	"go-im/im-common/zinx/iface"
 	"go-im/im-common/zinx/znet"
 	"go-im/im-server/api"
@@ -19,9 +19,9 @@ func main() {
 	s.SetOnConnStop(OnConnectionLost)
 
 	//注册路由
-	s.AddRouter(messageCommond.TypeLoginReq, &api.LoginRouter{})
-	s.AddRouter(messageCommond.TypeRegisterReq, &api.RegisterRouter{})
-
+	s.AddRouter(netCommond.TypeLoginReq, &api.LoginRouter{})
+	s.AddRouter(netCommond.TypeRegisterReq, &api.RegisterRouter{})
+	s.AddRouter(netCommond.TypeGetFriendListReq, &api.FriendRouter{})
 	//启动服务
 	s.Serve()
 

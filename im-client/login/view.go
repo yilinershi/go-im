@@ -2,14 +2,8 @@ package login
 
 import (
 	"fmt"
-	"go-im/im-common/eventCenter"
-
+	"go-im/im-client/game"
 )
-
-func initEvent()  {
-	eventCenter.On(eventCenter.OnTipLogin, TipLogin)
-}
-
 
 func TipLogin(pram interface{}) {
 	var account string
@@ -18,7 +12,6 @@ func TipLogin(pram interface{}) {
 	var password string
 	fmt.Println("登录提示：请输入密码")
 	fmt.Scanln(&password)
-	loginReq(account,password)
+	game.Session.Account = account
+	loginReq(account, password)
 }
-
-

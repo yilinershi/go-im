@@ -2,13 +2,7 @@ package register
 
 import (
 	"fmt"
-	"go-im/im-common/eventCenter"
 )
-
-func initEvent(){
-	eventCenter.On(eventCenter.OnTipRegister, TipRegister)
-}
-
 
 func TipRegister(pram interface{}) {
 	var account string
@@ -26,6 +20,6 @@ func TipRegister(pram interface{}) {
 	var age int
 	fmt.Println("注册提示：请输入年龄")
 	fmt.Scanln(&age)
-	
-	registerReq(account,password1,password2,age)
+
+	registerReq(account, password1, password2, age)
 }

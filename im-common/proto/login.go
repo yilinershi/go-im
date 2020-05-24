@@ -1,6 +1,6 @@
 
 //因为数据足够小，model层供client与server共用，这里放到common里，方便两端使用
-package model
+package proto
 
 import "go-im/im-common/errorCode"
 

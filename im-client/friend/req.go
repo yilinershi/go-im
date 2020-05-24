@@ -1,21 +1,20 @@
-package login
+package friend
 
 import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"go-im/im-client/game"
 	"go-im/im-common/netCommond"
 	"go-im/im-common/proto"
 )
 
 //发送req
-func loginReq(account string, password string) (err error) {
-
-	req := &proto.LoginReq{
-		Account:  account,
-		Password: password,
+func reqFriendList() (err error) {
+	req := &proto.FriendListReq{
+		Account: game.Session.Account,
 	}
-	fmt.Printf("login req=%v\n", req)
+	fmt.Printf("getFriendList req=%v\n", req)
 
 	jsonData, jsonErr := json.Marshal(req)
 	if jsonErr != nil {
@@ -23,11 +22,11 @@ func loginReq(account string, password string) (err error) {
 	}
 
 	//将结构体json byte 发送
-	err = conn.SendMsg(netCommond.TypeLoginReq, jsonData)
+	err = conn.SendMsg(netCommond.TypeGetFriendListReq, jsonData)
 	if err != nil {
 		fmt.Println("client write err: ", err)
 		return nil
 	}
-
+	fmt.Println("client send msg success: ")
 	return nil
 }

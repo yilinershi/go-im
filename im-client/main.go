@@ -2,13 +2,16 @@ package main
 
 import (
 	"fmt"
+	"go-im/im-client/friend"
 	"go-im/im-client/login"
 	"go-im/im-client/register"
 	"go-im/im-common/eventCenter"
-	"go-im/im-common/messageCommond"
+	"go-im/im-common/model"
 	"go-im/im-common/zinx/znet"
 	"time"
 )
+
+var Session = new(model.User)
 
 func main() {
 	initClient()
@@ -21,13 +24,9 @@ func initClient() {
 	client.Start()
 
 	//登录模块初始化
-	login.Init(client.GetConn())
-	
-	//注册登录路由
-	client.AddRouter(messageCommond.TypeLoginResp, &login.Router{})
-
-	register.Init(client.GetConn())
-	client.AddRouter(messageCommond.TypeRegisterResp, &register.Router{})
+	login.Init(client)
+	register.Init(client)
+	friend.Init(client)
 }
 
 func tipInput() {

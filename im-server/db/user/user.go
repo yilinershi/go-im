@@ -3,17 +3,13 @@ package user
 import (
 	"encoding/json"
 	"fmt"
+	"go-im/im-common/model"
 	"go-im/im-server/db"
 )
 
-type User struct {
-	Id       int
-	Account  string
-	Password string
-	Age      int
-}
 
-func GetUserByAccount(account string) (user *User, err error) {
+
+func GetUserByAccount(account string) (user *model.User, err error) {
 	if db.RedisClient == nil {
 		fmt.Println("db redis client is nil")
 		return
@@ -23,7 +19,7 @@ func GetUserByAccount(account string) (user *User, err error) {
 		fmt.Println("get user err, err=", err)
 		return
 	}
-	user = new(User)
+	user = new(model.User)
 	fmt.Println("get user from redis , value =", value)
 	err = json.Unmarshal([]byte(value), user)
 	if err != nil {
@@ -34,7 +30,7 @@ func GetUserByAccount(account string) (user *User, err error) {
 	return
 }
 
-func PutUser(account string, user *User) (err error) {
+func AddUser(account string, user *model.User) (err error) {
 	if db.RedisClient == nil {
 		fmt.Println("db redis client is nil")
 		return
@@ -53,3 +49,5 @@ func PutUser(account string, user *User) (err error) {
 	}
 	return nil
 }
+
+
