@@ -17,5 +17,5 @@ func Init(client iface.IClient) {
 
 	//UI消息
 	eventCenter.On(eventCenter.OnTipLogin, TipLogin)
-	fmt.Println(" init login modeul success!")
+	fmt.Println("init login modeul success!")
 }

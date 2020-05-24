@@ -7,5 +7,4 @@ const (
 	OnTipRegister   = "OnTipRegister"
 	OnLoginSuccess  = "OnLoginSuccess"
 	OnGetFriendList = "OnGetFriendList"
-	OnShowSelectFriendDia="OnShowSelectFriendDia"
 )

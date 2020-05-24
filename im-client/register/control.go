@@ -17,5 +17,5 @@ func Init(client iface.IClient) {
 
 	//UI消息
 	eventCenter.On(eventCenter.OnTipRegister, TipRegister)
-	fmt.Println(" init register modeul success!")
+	fmt.Println("init register modeul success!")
 }

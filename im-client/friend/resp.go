@@ -30,6 +30,4 @@ func (*Router) Handle(request iface.IRequest) {
 
 	//获取好友列表后，显示选择好友并对话的提示框
 	eventCenter.Emit(eventCenter.OnGetFriendList, nil)
-	// showSelectDia()
-
 }

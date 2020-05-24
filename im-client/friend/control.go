@@ -12,7 +12,6 @@ var conn iface.IConnection
 //初始化客户端的连接
 func Init(client iface.IClient) {
 	conn = client.GetConn()
-	fmt.Println("friend init conn success!")
 
 	//网络消息
 	client.AddRouter(netCommond.TypeGetFriendListResp, &Router{})
@@ -20,6 +19,8 @@ func Init(client iface.IClient) {
 	//UI消息
 	eventCenter.On(eventCenter.OnLoginSuccess, onLoginSuccess)
 	eventCenter.On(eventCenter.OnGetFriendList, onGetFriendList)
+
+	fmt.Println("init friend conn success!")
 }
 
 func onLoginSuccess(pram interface{}) {
