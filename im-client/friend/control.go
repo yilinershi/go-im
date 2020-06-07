@@ -18,7 +18,7 @@ func Init(client iface.IClient) {
 
 	//UI消息
 	eventCenter.On(eventCenter.OnLoginSuccess, onLoginSuccess)
-	eventCenter.On(eventCenter.OnGetFriendList, onGetFriendList)
+	// eventCenter.On(eventCenter.OnGetFriendList, onGetFriendList)
 
 	fmt.Println("init friend conn success!")
 }
@@ -28,7 +28,7 @@ func onLoginSuccess(pram interface{}) {
 	reqFriendList()
 }
 
-func onGetFriendList(pram interface{}) {
-	fmt.Println("获取好友列表成功")
-	showSelectDia()
-}
+// func onGetFriendList(pram interface{}) {
+// 	fmt.Println("获取好友列表成功")
+// 	eventCenter.Emit(eventCenter.OnTipInputTalk,nil)
+// }

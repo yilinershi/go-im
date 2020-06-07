@@ -22,6 +22,7 @@ func main() {
 	s.AddRouter(netCommond.TypeLoginReq, &api.LoginRouter{})
 	s.AddRouter(netCommond.TypeRegisterReq, &api.RegisterRouter{})
 	s.AddRouter(netCommond.TypeGetFriendListReq, &api.FriendRouter{})
+	s.AddRouter(netCommond.TypeFriendTalkInput, &api.TalkRouter{})
 	//启动服务
 	s.Serve()
 
@@ -35,4 +36,5 @@ func OnConnectionLost(conn iface.IConnection) {
 //当客户端建立连接的时候的hook函数
 func OnConnectionAdd(conn iface.IConnection) {
 	fmt.Println("OnConnectionAdd")
+
 }

@@ -1,6 +1,9 @@
 package model
 
-import "go-im/im-common/enum"
+import (
+	"go-im/im-common/enum"
+	"go-im/im-common/zinx/iface"
+)
 
 type User struct {
 	Id       int
@@ -8,6 +11,7 @@ type User struct {
 	Password string
 	Age      int
 	Frineds  []FriendInfo
+	Conn     iface.IConnection
 }
 
 type FriendInfo struct {

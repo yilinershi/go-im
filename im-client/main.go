@@ -5,13 +5,11 @@ import (
 	"go-im/im-client/friend"
 	"go-im/im-client/login"
 	"go-im/im-client/register"
+	"go-im/im-client/talk"
 	"go-im/im-common/eventCenter"
-	"go-im/im-common/model"
 	"go-im/im-common/zinx/znet"
 	"time"
 )
-
-var Session = new(model.User)
 
 func main() {
 	initClient()
@@ -27,6 +25,7 @@ func initClient() {
 	login.Init(client)
 	register.Init(client)
 	friend.Init(client)
+	talk.Init(client)
 }
 
 func tipInput() {

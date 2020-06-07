@@ -8,4 +8,6 @@ const (
 	TypeRegisterResp      = 4
 	TypeGetFriendListReq  = 5
 	TypeGetFriendListResp = 6
+	TypeFriendTalkInput   = 7
+	TypeFriendTalkSync    = 8
 )

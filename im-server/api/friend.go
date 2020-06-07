@@ -45,5 +45,5 @@ func (*FriendRouter) Handle(request iface.IRequest) {
 		return
 	}
 	request.GetConnection().SendMsg(netCommond.TypeGetFriendListResp, jsonData)
-	fmt.Printf("send msg to client, msgId=%d,msg=%s\n", netCommond.TypeGetFriendListResp, string(jsonData))
+	fmt.Printf("获取好友列表, msgId=%d,msg=%s\n", netCommond.TypeGetFriendListResp, string(jsonData))
 }

@@ -3,8 +3,9 @@
 package eventCenter
 
 const (
-	OnTipLogin      = "OnTipLogin"
-	OnTipRegister   = "OnTipRegister"
-	OnLoginSuccess  = "OnLoginSuccess"
-	OnGetFriendList = "OnGetFriendList"
+	OnTipLogin       = "OnTipLogin"
+	OnTipRegister    = "OnTipRegister"
+	OnLoginSuccess   = "OnLoginSuccess"
+	OnGetFriendList  = "OnGetFriendList"
+	OnSyncFriendTalk = "OnSyncFriendTalk"
 )

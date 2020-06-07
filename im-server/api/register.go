@@ -54,9 +54,9 @@ func (*RegisterRouter) Handle(request iface.IRequest) {
 
 	jsonData, err := json.Marshal(resp)
 	if err != nil {
-		fmt.Println("json marshal loginResp err,err=", err)
+		fmt.Println("json marshal 注册 err,err=", err)
 		return
 	}
 	request.GetConnection().SendMsg(netCommond.TypeRegisterResp, jsonData)
-	fmt.Printf("send msg to client, msgId=%d,msg=%s\n", netCommond.TypeRegisterResp, string(jsonData))
+	fmt.Printf("注册 resp, msgId=%d,msg=%s\n", netCommond.TypeRegisterResp, string(jsonData))
 }
